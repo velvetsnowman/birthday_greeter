@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 require 'time'
+require 'date'
 class Birthday
   attr_reader :name, :date
 
   def initialize(name, date)
     @name = name
-    @date = date
+    @date = Date.parse("#{date}")
   end
 
   def self.instance
@@ -17,11 +18,11 @@ class Birthday
   end
 
   def message
-    now = Time.now
-    if @date == now.strftime("%d/%m")
+    now = Date.today
+    if @date == now
       return "Happy Birthday"
     else
-      return "Your birthday is in xxx days"
+      return "Your birthday is in (#{@date} - #{now}) days"
     end
   end
 end
